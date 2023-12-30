@@ -7,28 +7,30 @@ public class Inventory
     [System.Serializable]
    public class Slot
     {
-        public string Name;
+        public ItemType type;
         public int count;
         public int maxAllowed;
 
         public Slot()
         {
-            Name = "";
+            type = ItemType.NONE;
             count = 0;
             maxAllowed = 99;
         }
         
         public bool canAddItem()
         {
-            if (count<maxAllowed)
+            if (count<=maxAllowed)
             {
                 return true;
             }
             return false;
         }
-        public void addItem(string name)
+        public void addItem(ItemType type)
         {
-            this.Name = name;
+            this.type = type;
+            Debug.Log(type);
+            Debug.Log(this);
             count++;
         }
     }
@@ -42,21 +44,23 @@ public class Inventory
             slots.Add(slot);
         }
     }
-    public void Add(string item)
+    public void Add(ItemType type)
     {
+        Debug.Log(type);
         foreach (Slot slot in slots)
         {
-            if (slot.Name==item && slot.canAddItem())
+            
+            if (slot.type==type && slot.canAddItem())
             {
-                slot.addItem(item);
+                slot.count++;
                 return;
             }
         }
         foreach (Slot slot in slots)
         {
-            if (slot.Name == item)
+            if (slot.type == ItemType.NONE)
             {
-                slot.addItem(item);
+                slot.addItem(type);
                 return ;
             }
         }

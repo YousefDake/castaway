@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Collectable : MonoBehaviour
 {
-    public Inventory playerInventory; // Assign this in the Inspector
-    public string Name = "";
+    public Inventory playerInventory;
+    public ItemType type;
     private float riseSpeed = 3f;
     public float fadeSpeed = 1f;
     public float duration = 0.5f;
@@ -14,6 +14,8 @@ public class Collectable : MonoBehaviour
 
     void Start()
     {
+         playerInventory = GameObject.FindObjectOfType<Player>().inventory;
+
         spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
@@ -44,7 +46,8 @@ public class Collectable : MonoBehaviour
         if (playerInventory != null && isPickedUp == false)
         {
             isPickedUp = true;
-            playerInventory.Add(Name); // Add the item to the inventory
+            playerInventory.Add(type); // Add the item to the inventory
+            Debug.Log("adding item");
         }
     }
 
@@ -55,7 +58,6 @@ public class Collectable : MonoBehaviour
 
             // Increment the timer
             timer += Time.deltaTime;
-            Debug.Log(timer);
 
             // Move the object up
             if (!playerTransform)
@@ -80,10 +82,16 @@ public class Collectable : MonoBehaviour
             // Destroy the object after the duration
             if (timer >= duration)
             {
-                Destroy(gameObject);
+                Destroy(this.gameObject);
             }
         }
     }
+}
+
+public enum ItemType
+{
+
+    NONE, TOMATO
 }
 
 
