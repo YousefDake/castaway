@@ -4,11 +4,12 @@ public class Collectable : MonoBehaviour
 {
     public Inventory playerInventory; // Assign this in the Inspector
     public string Name = "";
-    public float riseSpeed = 1f;
+    private float riseSpeed = 3f;
     public float fadeSpeed = 1f;
-    public float duration = 0.3f;
+    public float duration = 0.5f;
     private float timer;
     private bool isPickedUp = false;
+    private Transform playerTransform;
     private SpriteRenderer spriteRenderer;
 
     void Start()
@@ -32,6 +33,7 @@ public class Collectable : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !isPickedUp)
         {
+            playerTransform = collision.transform;
             PickupLogic();
         }
     }
@@ -56,7 +58,16 @@ public class Collectable : MonoBehaviour
             Debug.Log(timer);
 
             // Move the object up
-            gameObject.transform.Translate(Vector3.up * riseSpeed * Time.deltaTime);
+            if (!playerTransform)
+            {
+
+                transform.Translate(Vector3.up * riseSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, (riseSpeed + 2f) * Time.deltaTime);
+
+            }
 
             // Fade out the sprite
             if (spriteRenderer != null)

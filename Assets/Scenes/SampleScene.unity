@@ -215,7 +215,6 @@ MonoBehaviour:
   playerInventory:
     slots: []
   Name: Tomato
-  riseSpeed: 1
   fadeSpeed: 1
   duration: 0.5
 --- !u!58 &230121500
@@ -3193,6 +3192,10 @@ PrefabInstance:
     - target: {fileID: 1894547683364024387, guid: ae3334b993b287f4f9b61fde793345e1, type: 3}
       propertyPath: m_GravityScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1894547683364024388, guid: ae3334b993b287f4f9b61fde793345e1, type: 3}
+      propertyPath: moveSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1894547683364024447, guid: ae3334b993b287f4f9b61fde793345e1, type: 3}
       propertyPath: m_Name
