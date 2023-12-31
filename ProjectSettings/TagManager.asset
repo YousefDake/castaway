@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Collectable
   - Aim
+  - Attack
+  - Enemy
+  - Health
   layers:
   - Default
   - TransparentFX

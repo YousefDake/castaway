@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 758976998}
   - component: {fileID: 1894547683364024388}
   - component: {fileID: 758977002}
+  - component: {fileID: 758977006}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -193,7 +194,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &758976997
 CapsuleCollider2D:
@@ -243,9 +244,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 700523142d2377e4d94fcfb862355c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashTime: 0.2
+  dustEffectPrefab: {fileID: 0}
+  distanceBetweenImages: 0.1
+  initialDashCd: 1
+  dashDistance: 5
+  dashSpeed: 10
   moveSpeed: 10
-  rb: {fileID: 0}
-  animator: {fileID: 0}
 --- !u!114 &758977002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,3 +266,15 @@ MonoBehaviour:
   inventory:
     slots: []
   canvas: {fileID: 0}
+--- !u!114 &758977006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894547683364024447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fde5125824acef4ca2ed81dd852a585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

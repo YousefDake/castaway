@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (dashTimeLeft > 0)
             {
-                dashTimeLeft -= Time.deltaTime;
+                dashTimeLeft -= Time.deltaTime; 
                 if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
                 {
                     PlayerAfterImagePool.Instance.GetFromPool();
@@ -128,10 +128,7 @@ public class PlayerMovement : MonoBehaviour
             // Wait for the length of the animation clip
             yield return new WaitForSeconds(dustAnimator.GetCurrentAnimatorStateInfo(0).length);
         }
-        else
-        {
-            Debug.Log("HI");
-        }
+
 
         dustEffectPrefab.SetActive(false);
     }

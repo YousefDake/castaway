@@ -7,9 +7,11 @@ public class PlayerAim : MonoBehaviour
     // Start is called before the first frame update
     private Vector3 mousePosition;
     private GameObject aim;
+    private GameObject attack;
     void Start()
     {
         aim = GameObject.FindWithTag("Aim");
+        attack = GameObject.FindWithTag("Attack");
     }
 
     // Update is called once per frame

@@ -29,8 +29,6 @@ public class Inventory
         public void addItem(ItemType type)
         {
             this.type = type;
-            Debug.Log(type);
-            Debug.Log(this);
             count++;
         }
     }
