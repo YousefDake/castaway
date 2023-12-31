@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2768291624251000835}
   - component: {fileID: 3821535785220128223}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8221438284425601750}
   - component: {fileID: 9179432980673402214}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5143656467863456991}
   - component: {fileID: 9086697513553626101}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
