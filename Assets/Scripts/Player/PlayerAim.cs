@@ -27,9 +27,11 @@ public class PlayerAim : MonoBehaviour
     {
       
         Vector2 intersection = getCircleIntersection(transform.position.x, transform.position.y, mousePosition.x, mousePosition.y);
-   
+        if(intersection.x is float.NaN || intersection.y is float.NaN)
+        {
+            return;
+        }
         aim.transform.position = new Vector3(intersection.x, intersection.y, 0);
-        Debug.Log(aim.transform.position.y);
 
 
 
@@ -69,7 +71,6 @@ public class PlayerAim : MonoBehaviour
         // Calculate intersection point
         float intersect_x = xM + R * unit_dx;
         float intersect_y = yM + R * unit_dy;
-        Debug.Log(intersect_y);
         return new Vector2 (intersect_x, intersect_y);
 
     }

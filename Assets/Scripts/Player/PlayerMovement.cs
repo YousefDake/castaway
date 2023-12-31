@@ -1,18 +1,22 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
     public float dashTime = 0.2f;
-    private float dashCd = 0f;
     private bool isDashing = false;
     private float lastDashTime = -Mathf.Infinity;
+    private float dashTimeLeft = 0f;
+    private float lastImageXpos;
+    private float lastImageYpos;
+    public GameObject dustEffectPrefab; // Assign this in the Inspector
 
+    public float distanceBetweenImages = 0.5f;
     public float initialDashCd = 2f;
     public float dashDistance = 1f;
     public float dashSpeed = 10f;
     public float moveSpeed = 5f;
-    private Vector2 dashStart;
     private Rigidbody2D rb;
     private Vector2 movement;
     private Animator animator;
@@ -50,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+        CheckDash();
     }
 
     void FixedUpdate()
@@ -62,8 +67,15 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Dash()
     {
+        dustEffectPrefab.transform.position = transform.position;
+        StartCoroutine(PlayDustEffectAndDestroy(dustEffectPrefab));
         isDashing = true;
+        dashTimeLeft = dashTime;
         lastDashTime = Time.time;
+
+        PlayerAfterImagePool.Instance.GetFromPool();
+        lastImageXpos = transform.position.x;
+        lastImageYpos = transform.position.y;
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
@@ -83,6 +95,45 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = Vector2.zero; // Stop immediately for an abrupt stop
 
         isDashing = false;
+    }
+
+
+    //checkDash function
+
+    private void CheckDash()
+    {
+
+        if (isDashing)
+        {
+            if (dashTimeLeft > 0)
+            {
+                dashTimeLeft -= Time.deltaTime;
+                if (Mathf.Abs(transform.position.x - lastImageXpos) > distanceBetweenImages)
+                {
+                    PlayerAfterImagePool.Instance.GetFromPool();
+                    lastImageXpos = transform.position.x;
+                    lastImageYpos = transform.position.y; // Store the Y position as well
+
+                }
+            }
+        }
+    }
+    IEnumerator PlayDustEffectAndDestroy(GameObject dustEffect)
+    {
+        dustEffectPrefab.SetActive(true);
+
+        Animator dustAnimator = dustEffect.GetComponent<Animator>();
+        if (dustAnimator != null)
+        {
+            // Wait for the length of the animation clip
+            yield return new WaitForSeconds(dustAnimator.GetCurrentAnimatorStateInfo(0).length);
+        }
+        else
+        {
+            Debug.Log("HI");
+        }
+
+        dustEffectPrefab.SetActive(false);
     }
 
 
