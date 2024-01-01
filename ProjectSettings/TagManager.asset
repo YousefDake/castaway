@@ -9,6 +9,7 @@ TagManager:
   - Attack
   - Enemy
   - Health
+  - Inventory
   layers:
   - Default
   - TransparentFX

@@ -3,7 +3,7 @@ using UnityEngine;
 public class Collectable : MonoBehaviour
 {
     public Inventory playerInventory;
-    public ItemType type;
+    public string type;
     private float riseSpeed = 3f;
     public float fadeSpeed = 1f;
     public float duration = 0.5f;
@@ -11,10 +11,13 @@ public class Collectable : MonoBehaviour
     private bool isPickedUp = false;
     private Transform playerTransform;
     private SpriteRenderer spriteRenderer;
+    public Sprite icon;
+
 
     void Start()
     {
-         playerInventory = GameObject.FindObjectOfType<Player>().inventory;
+        icon = GetComponent<SpriteRenderer>().sprite;
+        playerInventory = FindObjectOfType<Player>().inventory;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -45,9 +48,8 @@ public class Collectable : MonoBehaviour
     {
         if (playerInventory != null && isPickedUp == false)
         {
-            isPickedUp = true;
-            playerInventory.Add(type); // Add the item to the inventory
-            Debug.Log("adding item");
+
+            isPickedUp = playerInventory.Add(this);
         }
     }
 
@@ -63,7 +65,7 @@ public class Collectable : MonoBehaviour
             if (!playerTransform)
             {
 
-                transform.Translate(Vector3.up * riseSpeed * Time.deltaTime);
+                transform.Translate(riseSpeed * Time.deltaTime * Vector3.up);
             }
             else
             {
@@ -82,16 +84,10 @@ public class Collectable : MonoBehaviour
             // Destroy the object after the duration
             if (timer >= duration)
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
         }
     }
-}
-
-public enum ItemType
-{
-
-    NONE, TOMATO
 }
 
 

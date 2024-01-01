@@ -1,67 +1,86 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
-public class Inventory 
+public class Inventory
 {
+    public delegate void OnInventoryChanged(Slot slot);
+    public event OnInventoryChanged onInventoryChanged;
+
     [System.Serializable]
-   public class Slot
+    public class Slot
     {
-        public ItemType type;
+        public string type;
         public int count;
         public int maxAllowed;
+        public Sprite icon;
+        public int index = -1;
 
         public Slot()
         {
-            type = ItemType.NONE;
+            type = "";
             count = 0;
-            maxAllowed = 99;
+            maxAllowed = 999;
+            icon = null;
         }
-        
+
         public bool canAddItem()
         {
-            if (count<=maxAllowed)
+            // log this (count:maxallowed) with the variables instead of the strings
+
+
+            if (count < maxAllowed)
             {
                 return true;
             }
             return false;
         }
-        public void addItem(ItemType type)
+        public void addItem(Collectable item)
         {
-            this.type = type;
+            type = item.type;
+            icon = item.icon;
+
+
             count++;
         }
     }
-    public List<Slot> slots=new List<Slot>();
+
+    public List<Slot> slots = new List<Slot>();
 
     public Inventory(int numSlots)
     {
         for (int i = 0; i < numSlots; i++)
         {
-            Slot slot = new Slot();
+            Slot slot = new()
+            {
+                index = i
+            };
             slots.Add(slot);
         }
     }
-    public void Add(ItemType type)
+    public bool Add(Collectable item)
     {
-        Debug.Log(type);
         foreach (Slot slot in slots)
         {
-            
-            if (slot.type==type && slot.canAddItem())
+
+            if (slot.type == item.type && slot.canAddItem())
             {
                 slot.count++;
-                return;
+                onInventoryChanged?.Invoke(slot);
+
+                return true;
             }
         }
         foreach (Slot slot in slots)
         {
-            if (slot.type == ItemType.NONE)
+            if (slot.type == "")
             {
-                slot.addItem(type);
-                return ;
+                slot.addItem(item);
+                onInventoryChanged?.Invoke(slot);
+
+                return true;
             }
         }
+        return false;
     }
 
 }
