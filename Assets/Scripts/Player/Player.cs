@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         inventory = new Inventory(21);
-        canvas = canvasGO.gameObject.GetComponent<Canvas>();
+        canvas = canvasGO.GetComponent<Canvas>();
     }
 
     private void Update()

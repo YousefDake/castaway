@@ -4,7 +4,7 @@ public class Collectable : MonoBehaviour
 {
     public Inventory playerInventory;
     public string type;
-    private float riseSpeed = 3f;
+    private readonly float riseSpeed = 3f;
     public float fadeSpeed = 1f;
     public float duration = 0.5f;
     private float timer;

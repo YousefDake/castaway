@@ -7,7 +7,7 @@ public class HealthBar : MonoBehaviour
 {
     private Image healthImage;
     private float targetHealth = 1f;
-    private float changeSpeed = 2f;
+    private float changeSpeed = 6f;
     void Start()
     {
         healthImage = gameObject.transform.Find("Health").GetComponent<Image>();

@@ -15,7 +15,7 @@ public class InventoryHandler : MonoBehaviour
 
     // Start is called before the first frame update
 
- 
+
     void Start()
     {
         Debug.Log("HERE");
@@ -84,16 +84,16 @@ public class InventoryHandler : MonoBehaviour
     void clearSlot(Inventory.Slot slot)
     {
         GameObject slotObject = slotsObject.transform.GetChild(slot.index).gameObject;
-        
+
         slot.icon = placeholder;
         slot.count = 0;
         slot.type = "";
         slotObject.transform.GetChild(1).gameObject.SetActive(false);
         slotObject.transform.GetChild(2).gameObject.SetActive(false);
         slotObject.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = placeholder;
-        
+
     }
-  
+
 
     public void Drop(int index)
     {
@@ -101,7 +101,7 @@ public class InventoryHandler : MonoBehaviour
         if (slot.count > 0)
         {
             slot.count--;
-          
+
             GameObject collectablePrefab = Resources.Load<GameObject>("Prefabs/Collectable");
             SpawnItem(collectablePrefab, slot);
             UpdateInventoryUI(slot);
@@ -165,14 +165,23 @@ public class InventoryHandler : MonoBehaviour
 
     void OnDestroy()
     {
-        // Unsubscribe to avoid memory leaks
-        inventory.onInventoryChanged -= UpdateInventoryUI;
-
-        foreach (Inventory.Slot slot in inventory.slots)
+        try
         {
-            ItemDrop itemDrop = slotsObject.transform.GetChild(slot.index).gameObject.GetComponent<ItemDrop>();
-            itemDrop.onDropClick -= Drop;
+            inventory.onInventoryChanged -= UpdateInventoryUI;
+            // Unsubscribe to avoid memory leaks
+            inventory.onInventoryChanged -= UpdateInventoryUI;
+
+            foreach (Inventory.Slot slot in inventory.slots)
+            {
+                ItemDrop itemDrop = slotsObject.transform.GetChild(slot.index).gameObject.GetComponent<ItemDrop>();
+                itemDrop.onDropClick -= Drop;
+            }
+        }
+        catch (System.NullReferenceException e)
+        {
+            Debug.Log(e);
         }
     }
+
 
 }

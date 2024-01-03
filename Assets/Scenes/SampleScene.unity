@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 454970506}
   - component: {fileID: 454970505}
   - component: {fileID: 454970504}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -868,6 +868,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ed411a2d07344847a67d12115fb6151, type: 3}
+--- !u!4 &888311939 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 262317681315182349, guid: ae3334b993b287f4f9b61fde793345e1, type: 3}
+  m_PrefabInstance: {fileID: 1894547683713917344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &925893264
 GameObject:
   m_ObjectHideFlags: 0
@@ -3449,7 +3454,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 742412595, guid: e39682e76aabdb64cb6832027253e325, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3501,20 +3506,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.5002185, y: 1.9083419}
-      - {x: 0.21655476, y: 2.297092}
-      - {x: -0.2975096, y: 2.2600012}
-      - {x: -0.4678427, y: 1.9602833}
-      - {x: -1.8837535, y: 0.5300026}
+    - - {x: 0.6755123, y: 1.0494022}
+      - {x: 0.3217311, y: 1.1226232}
+      - {x: -0.4552741, y: 0.92776775}
+      - {x: -0.8359598, y: 0.69816756}
+      - {x: -1.2240502, y: 0.4408586}
+      - {x: -1.7610478, y: 0.33717942}
       - {x: -1.9475012, y: -1.2737656}
       - {x: -1.6758009, y: -1.2318606}
       - {x: -1.4129521, y: -1.5736151}
       - {x: 1.3988276, y: -1.5653052}
       - {x: 1.6429753, y: -1.2325497}
       - {x: 1.96875, y: -1.1925113}
-      - {x: 1.8412554, y: 0.6337528}
-      - {x: 1.3087976, y: 1.0805049}
-      - {x: 1.2587538, y: 1.9412642}
+      - {x: 1.8412554, y: 0.47598815}
+      - {x: 1.3087976, y: 0.6072116}
+      - {x: 1.8021648, y: 0.5389135}
 --- !u!1001 &1334563722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3668,7 +3674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1675218850
 Transform:
   m_ObjectHideFlags: 0
@@ -4100,6 +4106,14 @@ PrefabInstance:
       propertyPath: canvasGO
       value: 
       objectReference: {fileID: 1900309629}
+    - target: {fileID: 262317681315182349, guid: ae3334b993b287f4f9b61fde793345e1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 262317681315182349, guid: ae3334b993b287f4f9b61fde793345e1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.11
+      objectReference: {fileID: 0}
     - target: {fileID: 1894547683364024385, guid: ae3334b993b287f4f9b61fde793345e1, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -4172,6 +4186,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5962223080792679166, guid: ae3334b993b287f4f9b61fde793345e1, type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 888311939}
+    - target: {fileID: 5962223080792679166, guid: ae3334b993b287f4f9b61fde793345e1, type: 3}
+      propertyPath: attackRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5962223080792679166, guid: ae3334b993b287f4f9b61fde793345e1, type: 3}
+      propertyPath: enemyLayers.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae3334b993b287f4f9b61fde793345e1, type: 3}
 --- !u!1001 &3218321714262478790
@@ -4242,6 +4268,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 454970507}
     m_Modifications:
+    - target: {fileID: 2347566448732039183, guid: 76cd93f9a626b2c459fdec5f92d84a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5240840322185621865, guid: 76cd93f9a626b2c459fdec5f92d84a0e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4289,6 +4319,18 @@ PrefabInstance:
     - target: {fileID: 5240840322185621878, guid: 76cd93f9a626b2c459fdec5f92d84a0e, type: 3}
       propertyPath: m_Name
       value: ChickenGFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 5240840322185621878, guid: 76cd93f9a626b2c459fdec5f92d84a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6448472774623072551, guid: 76cd93f9a626b2c459fdec5f92d84a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7053028918993972086, guid: 76cd93f9a626b2c459fdec5f92d84a0e, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8056948418399836865, guid: 76cd93f9a626b2c459fdec5f92d84a0e, type: 3}
       propertyPath: m_FillAmount
